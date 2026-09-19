@@ -1,12 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
+
 interface NavbarProps {
   logoSrc: string;
+  onImportClick?: () => void;
 }
 
-export default function Navbar({ logoSrc }: NavbarProps) {
+export default function Navbar({ logoSrc, onImportClick }: NavbarProps) {
   const navItems = [
     {
       label: "How it works",
-      link: "#how-it-works",
+      link: "/#how-it-works",
       hideOnMobile: true,
     },
     {
@@ -16,7 +20,7 @@ export default function Navbar({ logoSrc }: NavbarProps) {
     },
     {
       label: "GitHub",
-      link: "https://github.com/Adochaure",
+      link: "https://github.com/Adochaure/Kontext",
       isGitHub: true,
     },
   ];
@@ -26,13 +30,16 @@ export default function Navbar({ logoSrc }: NavbarProps) {
       <div className="flex max-w-full items-center gap-1 rounded-2xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 shadow-lg shadow-[#5a1b09]/20 backdrop-blur-md">
 
         {/* Logo */}
-        <button className="rounded-xl bg-[#b9b6b6] px-1 py-1 text-sm font-light text-black transition duration-200 hover:bg-[#4a4949]">
+        <Link
+          href="/"
+          className="rounded-xl bg-[#b9b6b6] px-1 py-1 text-sm font-light text-black transition duration-200 hover:bg-[#4a4949] flex items-center justify-center"
+        >
           <img
             src={logoSrc}
             alt="Logo"
             className="h-10 w-10 rounded-xl border-none object-cover sm:h-12 sm:w-12 md:h-14 md:w-14"
           />
-        </button>
+        </Link>
 
         {/* Navigation */}
         <div className="flex items-center gap-1 rounded-2xl border border-[#8f250f]/50 bg-[#d9401c]/90 p-1">
@@ -61,14 +68,26 @@ export default function Navbar({ logoSrc }: NavbarProps) {
         </div>
 
         {/* Import Context */}
-        <button className="whitespace-nowrap rounded-xl bg-black px-2 py-1 text-sm font-light text-white transition duration-200 hover:bg-[#898989] sm:px-3">
-          <a
-            href="#import-context"
-            className="flex h-10 items-center justify-center rounded-xl border-none px-2 text-sm sm:h-12 sm:px-4 sm:text-xl md:h-14 md:px-5 md:text-xl"
+        {onImportClick ? (
+          <button
+            type="button"
+            onClick={onImportClick}
+            className="whitespace-nowrap rounded-xl bg-black px-2 py-1 text-sm font-light text-white transition duration-200 hover:bg-[#898989] sm:px-3 cursor-pointer"
           >
-            Import Context
-          </a>
-        </button>
+            <span className="flex h-10 items-center justify-center rounded-xl border-none px-2 text-sm sm:h-12 sm:px-4 sm:text-xl md:h-14 md:px-5 md:text-xl">
+              Import Context
+            </span>
+          </button>
+        ) : (
+          <Link
+            href="/import"
+            className="whitespace-nowrap rounded-xl bg-black px-2 py-1 text-sm font-light text-white transition duration-200 hover:bg-[#898989] sm:px-3 cursor-pointer"
+          >
+            <span className="flex h-10 items-center justify-center rounded-xl border-none px-2 text-sm sm:h-12 sm:px-4 sm:text-xl md:h-14 md:px-5 md:text-xl">
+              Import Context
+            </span>
+          </Link>
+        )}
 
       </div>
     </nav>

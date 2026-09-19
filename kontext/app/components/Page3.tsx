@@ -9,6 +9,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Navbar from "./Navbar";
 type Page3Props = {
   modelUrl?: string;
+  showNavbar?: boolean;
 };
 
 const DEFAULT_MODEL_URL = "/stamp.glb";
@@ -193,7 +194,10 @@ function createHeadingTexture(text: string) {
   return texture;
 }
 
-export default function Page3({ modelUrl = DEFAULT_MODEL_URL }: Page3Props) {
+export default function Page3({
+  modelUrl = DEFAULT_MODEL_URL,
+  showNavbar = true,
+}: Page3Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const distanceLabelRef = useRef<HTMLSpanElement>(null);
@@ -588,7 +592,7 @@ export default function Page3({ modelUrl = DEFAULT_MODEL_URL }: Page3Props) {
       ref={sectionRef}
       className="relative min-h-[100svh] w-full overflow-hidden bg-[#c8bfba] text-black select-none [contain:layout_style]"
     >
-      <Navbar logoSrc="/logo.png" />
+      {showNavbar && <Navbar logoSrc="/logo.png" />}
       {/* Background SVG Curve & Hourglass Graphic with Glowing Flowing Sphere Gradients */}
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden [contain:strict]"
@@ -850,7 +854,6 @@ export default function Page3({ modelUrl = DEFAULT_MODEL_URL }: Page3Props) {
         className="absolute inset-0 h-full w-full [contain:strict]"
         style={{ touchAction: "pan-y" }}
       />
-
     </section>
   );
 }
