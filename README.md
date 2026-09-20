@@ -1,7 +1,7 @@
 ﻿# Kontext
 
 <p align="center">
-  <img src="./kontext/public/logo.png" alt="Kontext Logo" width="120" bg="white"/>
+  <img src="./kontext/public/logo.png" alt="Kontext Logo" width="120" style="background: #000; padding: 12px; border-radius: 16px;"/>
 </p>
 
 <h1 align="center">Kontext</h1>
