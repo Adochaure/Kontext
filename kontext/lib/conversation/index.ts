@@ -1,7 +1,6 @@
 import { detectProvider } from "./detect";
 import { extractChatGPT } from "./extractors/chatgpt";
 import { extractClaude } from "./extractors/claude";
-import { extractGemini } from "./extractors/gemini";
 import { NormalizedConversation } from "./types";
 
 export * from "./types";
@@ -19,13 +18,6 @@ export async function importConversation(url: string): Promise<NormalizedConvers
     case "claude":
       conversation = await extractClaude(detected.shareId, detected.originalUrl);
       break;
-    case "gemini":
-      conversation = await extractGemini(
-        detected.shareId,
-        detected.originalUrl,
-        detected.extraParams
-      );
-      break;
     default:
       throw new Error(`Unsupported provider: ${detected.provider}`);
   }
@@ -38,4 +30,3 @@ export async function importConversation(url: string): Promise<NormalizedConvers
 
   return conversation;
 }
-

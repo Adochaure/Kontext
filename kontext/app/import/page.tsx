@@ -4,7 +4,7 @@ import Maintool from "../components/Maintool";
 export const metadata = {
   title: "Import Conversation & Generate Context | Kontext",
   description:
-    "Extract real decisions, active constraints, and continuation context from public ChatGPT, Claude, or Gemini conversation links.",
+    "Extract real decisions, active constraints, and continuation context from public ChatGPT or Claude conversation links.",
 };
 
 export default function ImportPage() {

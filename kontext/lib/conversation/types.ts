@@ -8,25 +8,34 @@ export interface ConversationMessage {
 export interface DomainSection {
   title: string;
   items: string[];
+  content?: string;
 }
 
 export interface DecisionItem {
   topic: string;
   decision: string;
   rationale?: string;
+  status?: "confirmed" | "possible" | "rejected" | "undecided";
 }
 
 export interface GeneratedContext {
+  primaryDomain?: string;
+  secondaryDomains?: string[];
+  purpose?: string;
+  conversationState?: string;
   category: string;
   objective: string;
   summary: string;
   decisions: DecisionItem[];
   discardedOptions?: string[];
+  requirements?: string[];
+  workCompleted?: string[];
   keyPoints: string[];
   sections: DomainSection[];
   currentState: string;
   nextSteps?: string[];
   pendingInquiry?: string;
+  openQuestions?: string[];
   aiPrompt: string;
   markdown: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

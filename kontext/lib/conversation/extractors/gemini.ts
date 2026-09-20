@@ -38,13 +38,31 @@ export async function extractGemini(
   let pageHtml = "";
   let cookiesHeader = "";
   let fdr = "";
+  let pageError = "";
   try {
     const pageRes = await fetch(targetUrl, {
       headers: {
         "User-Agent": USER_AGENT,
         Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
       },
     });
+
+    // `share.gemini.google/<short-id>` redirects when followed. Use the final
+    // canonical URL and ID for the RPC request rather than the short-link ID.
+    if (pageRes.url) {
+      targetUrl = pageRes.url;
+      const redirectedUrl = new URL(targetUrl);
+      const match = redirectedUrl.pathname.match(/\/share\/([a-zA-Z0-9_-]+)/);
+      if (match) finalShareId = match[1];
+      if (redirectedUrl.searchParams.has("skid")) {
+        skid = redirectedUrl.searchParams.get("skid")!;
+      }
+    }
+
+    if (!pageRes.ok) {
+      throw new Error(`Gemini share page returned HTTP ${pageRes.status}.`);
+    }
 
     const setCookies = pageRes.headers.getSetCookie ? pageRes.headers.getSetCookie() : [];
     cookiesHeader = setCookies.map((c) => c.split(";")[0]).join("; ");
@@ -52,7 +70,8 @@ export async function extractGemini(
 
     const fdrMatch = pageHtml.match(/"FdrFJe":"([^"]+)"/);
     if (fdrMatch) fdr = fdrMatch[1];
-  } catch {
+  } catch (error) {
+    pageError = error instanceof Error ? error.message : "Unable to fetch the Gemini share page.";
     // Continue to RPC / fallback
   }
 
@@ -115,7 +134,7 @@ export async function extractGemini(
   }
 
   throw new Error(
-    "Could not extract Gemini conversation. The conversation link may be private, expired, or unavailable."
+    `Could not extract Gemini conversation. ${pageError || "The conversation link may be private, expired, or unavailable."}`
   );
 }
 
@@ -206,4 +225,3 @@ function extractMessagesFromRpc(data: any): ConversationMessage[] {
   }
   return messages;
 }
-

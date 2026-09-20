@@ -39,7 +39,7 @@ const SAMPLE_MESSAGES = [
     name: "ChatGPT",
     time: "Sep 19, 2026 10:16 PM",
     content:
-      "The conversation importer can:\n- Take a shared link from ChatGPT, Gemini, Claude\n- Extract the full conversation\n- Convert it to clean context\n- Allow download as .md or .json\n- Help you continue the chat in any AI platform\n\nIt would be super useful for students, developers, and researchers.",
+      "The conversation importer can:\n- Take a shared link from ChatGPT or Claude\n- Extract the full conversation\n- Convert it to clean context\n- Allow download as .md or .json\n- Help you continue the chat in any AI platform\n\nIt would be super useful for students, developers, and researchers.",
   },
   {
     role: "user" as const,
@@ -193,9 +193,7 @@ export default function Maintool() {
   const providerDisplayName = conversation
     ? conversation.source === "chatgpt"
       ? "ChatGPT"
-      : conversation.source === "claude"
-      ? "Claude"
-      : "Gemini"
+      : "Claude"
     : "ChatGPT";
 
   const currentMessages = conversation
@@ -280,7 +278,7 @@ export default function Maintool() {
                         type="url"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                        placeholder="Paste your ChatGPT, Gemini, Claude or other AI conversation link..."
+                        placeholder="Paste your ChatGPT or Claude public share link..."
                         disabled={isLoading}
                         required
                         className="w-full bg-transparent text-xs text-black outline-none placeholder:text-gray-400 sm:text-sm"
@@ -303,7 +301,7 @@ export default function Maintool() {
                 </div>
 
                 <div className="text-[11px] sm:text-xs text-gray-600 px-1 pt-0.5">
-                  Supports: <strong className="text-black font-semibold">ChatGPT</strong> • <strong className="text-black font-semibold">Gemini</strong> • <strong className="text-black font-semibold">Claude</strong> • Public Share Links
+                  Supports: <strong className="text-black font-semibold">ChatGPT</strong> • <strong className="text-black font-semibold">Claude</strong> • Public Share Links
                 </div>
               </form>
 
