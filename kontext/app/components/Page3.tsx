@@ -487,8 +487,11 @@ export default function Page3({
       distanceLabelRef.current.textContent = "5.00";
     }
 
-    // Visibility-aware animation loop: Pauses when offscreen to save 100% CPU/GPU/battery on phones
+    // Visibility-aware animation loop: stop rendering whenever another page
+    // section sits over this sticky hero, not only when the hero itself leaves
+    // the viewport.
     let isVisible = true;
+    let isCovered = false;
     let animationFrame = 0;
 
     const observer = new IntersectionObserver(
@@ -497,7 +500,9 @@ export default function Page3({
         if (intersecting && !isVisible) {
           isVisible = true;
           lastScrollY = window.scrollY;
-          animationFrame = window.requestAnimationFrame(animate);
+          if (!isCovered) {
+            animationFrame = window.requestAnimationFrame(animate);
+          }
         } else if (!intersecting && isVisible) {
           isVisible = false;
           if (animationFrame) {
@@ -513,8 +518,37 @@ export default function Page3({
       observer.observe(sectionRef.current);
     }
 
+    const coveredSections = new Set<Element>();
+    const coverObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) coveredSections.add(entry.target);
+          else coveredSections.delete(entry.target);
+        });
+        isCovered = coveredSections.size > 0;
+        if (isCovered) {
+          if (animationFrame) {
+            window.cancelAnimationFrame(animationFrame);
+            animationFrame = 0;
+          }
+        } else if (isVisible && !animationFrame) {
+          lastScrollY = window.scrollY;
+          clock.getDelta();
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      },
+      // The 1%-high observation strip sits at the top of the viewport. A
+      // section only intersects it after it has covered the landing entirely.
+      { rootMargin: "0px 0px -99% 0px", threshold: 0.01 },
+    );
+
+    ["how-it-works", "features"].forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) coverObserver.observe(section);
+    });
+
     const animate = () => {
-      if (!isVisible) return;
+      if (!isVisible || isCovered) return;
 
       const delta = Math.min(clock.getDelta(), 0.1);
 
@@ -555,6 +589,7 @@ export default function Page3({
 
     return () => {
       observer.disconnect();
+      coverObserver.disconnect();
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener("scroll", handleScroll);
       canvas.removeEventListener("pointerdown", handlePointerDown);

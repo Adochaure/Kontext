@@ -241,7 +241,7 @@ export default function Maintool() {
     <div className="w-full">
       {/* Toast Notification */}
       {copyFeedback && (
-        <div className="fixed bottom-6 right-6 z-50 rounded-xl bg-black border border-[#E85023] px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xl animate-in fade-in slide-in-from-bottom-3 duration-200 flex items-center gap-2">
+        <div className="fixed bottom-6 right-6 z-50 rounded-2xl bg-black border border-[#ec4920] px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xl animate-in fade-in slide-in-from-bottom-3 duration-200 flex items-center gap-2">
           <Check className="h-4 w-4 text-[#E85023]" />
           <span>{copyFeedback}</span>
         </div>
@@ -250,7 +250,8 @@ export default function Maintool() {
       {/* Main Grid: Equal Height Boxes on Desktop */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* ================= LEFT MAIN PANEL ================= */}
-        <div className="lg:col-span-7 rounded-3xl border-[3px] border-[#E85023] bg-[#EFECE8] p-5 sm:p-7 shadow-xl flex flex-col justify-between h-auto lg:h-[700px]">
+        <div className="h-auto rounded-3xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 shadow-xl lg:col-span-7 lg:h-[700px]">
+          <div className="flex h-full flex-col justify-between rounded-[22px] border border-[#9f2b13] bg-[#EFECE8] p-5 sm:p-7">
           <div className="space-y-5">
             {/* 1. Paste Conversation Link */}
             <div>
@@ -263,41 +264,41 @@ export default function Maintool() {
                 <button
                   type="button"
                   onClick={() => setIsMobileChatOpen(true)}
-                  className="lg:hidden flex items-center gap-1.5 rounded-xl border-2 border-[#E85023] bg-white px-2.5 py-1 text-xs font-bold text-black shadow-sm active:scale-95 transition"
+                  className="lg:hidden flex items-center gap-1.5 rounded-xl border-2 border-[#ec4920] bg-[#b9b6b6] px-2.5 py-1 text-xs font-bold text-black shadow-sm active:scale-95 transition"
                 >
-                  <Eye className="h-3.5 w-3.5 text-[#E85023]" />
+                  <Eye className="h-3.5 w-3.5 text-[#ec4920]" />
                   <span>Preview Chat ({conversation ? conversation.messages.length : SAMPLE_MESSAGES.length})</span>
                 </button>
               </div>
 
               <form onSubmit={handleImport} className="space-y-2">
                 <div className="flex flex-col sm:flex-row gap-2.5 items-stretch">
-                  <div className="relative flex-1 rounded-2xl border-2 border-[#D4431B] bg-white px-3.5 py-3 flex items-center shadow-inner focus-within:ring-2 focus-within:ring-[#E85023]/40">
-                    <Link2 className="h-4 w-4 text-gray-400 mr-2 shrink-0" />
-                    <input
-                      type="url"
-                      value={url}
-                      onChange={(e) => setUrl(e.target.value)}
-                      placeholder="Paste your ChatGPT, Gemini, Claude or other AI conversation link..."
-                      disabled={isLoading}
-                      required
-                      className="w-full bg-transparent text-xs sm:text-sm text-black placeholder:text-gray-400 outline-none"
-                    />
+                  <div className="flex-1 rounded-2xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 shadow-sm focus-within:ring-2 focus-within:ring-[#E85023]/40">
+                    <div className="relative flex items-center rounded-xl border border-[#9f2b13] bg-white px-3.5 py-3">
+                      <Link2 className="mr-2 h-4 w-4 shrink-0 text-gray-400" />
+                      <input
+                        type="url"
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
+                        placeholder="Paste your ChatGPT, Gemini, Claude or other AI conversation link..."
+                        disabled={isLoading}
+                        required
+                        className="w-full bg-transparent text-xs text-black outline-none placeholder:text-gray-400 sm:text-sm"
+                      />
+                    </div>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="whitespace-nowrap rounded-2xl bg-black border-2 border-[#E85023] px-5 py-3 text-xs sm:text-sm font-bold text-white transition hover:bg-[#1a1a1a] active:scale-[0.98] disabled:opacity-50 cursor-pointer shadow-md flex items-center justify-center gap-2"
+                    className="whitespace-nowrap rounded-2xl border border-[#E85023] bg-black p-1 text-xs font-bold text-white shadow-md transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm"
                   >
-                    {isLoading ? (
-                      <>
+                    <span className="flex items-center justify-center gap-2 rounded-xl border border-[#555] bg-black px-5 py-3 transition hover:bg-[#1a1a1a]">
+                      {isLoading ? <>
                         <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent" />
                         <span>Importing...</span>
-                      </>
-                    ) : (
-                      <span>Import Conversation</span>
-                    )}
+                      </> : <span>Import Conversation</span>}
+                    </span>
                   </button>
                 </div>
 
@@ -340,16 +341,15 @@ export default function Maintool() {
                 type="button"
                 onClick={handleGenerateContext}
                 disabled={isGeneratingContext}
-                className={`w-full rounded-2xl border-2 border-[#E85023] bg-black py-4 px-5 text-center transition active:scale-[0.99] cursor-pointer shadow-md relative overflow-hidden ${
+                className={`w-full rounded-2xl border border-[#E85023] bg-black p-1 text-center transition active:scale-[0.99] cursor-pointer shadow-md ${
                   isGeneratingContext ? "ring-2 ring-[#E85023]/60" : "hover:bg-[#1c1c1c]"
                 }`}
               >
-                {/* Generating Shimmer Animation */}
-                {isGeneratingContext && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#E85023]/20 to-transparent animate-pulse pointer-events-none" />
-                )}
+                <div className="relative overflow-hidden rounded-xl border border-[#555] bg-black px-5 py-4">
+                  {/* Generating Shimmer Animation */}
+                  {isGeneratingContext && <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-[#E85023]/20 to-transparent animate-pulse" />}
 
-                <div className="relative z-10 flex items-center justify-center gap-2 text-white font-bold text-base sm:text-lg">
+                <div className="relative z-10 flex items-center justify-center gap-2 text-base font-bold text-white sm:text-lg">
                   <Sparkles
                     className={`h-5 w-5 text-[#E85023] ${
                       isGeneratingContext ? "animate-spin" : ""
@@ -372,6 +372,7 @@ export default function Maintool() {
                     <div className="h-full bg-[#E85023] animate-indeterminate" />
                   </div>
                 )}
+                </div>
               </button>
 
               {/* Green Flag: Context Generated */}
@@ -411,10 +412,9 @@ export default function Maintool() {
                   onClick={() =>
                     copyToClipboard(getExportMarkdown(), "Markdown Copied!")
                   }
-                  className="flex items-center justify-center gap-2.5 rounded-xl border-2 border-black bg-[#E85023] px-4 py-3 text-xs sm:text-sm font-bold text-black transition hover:brightness-105 active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-sm"
+                  className="rounded-2xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 text-black shadow-sm transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <FileText className="h-4 w-4 shrink-0" />
-                  <span>Copy Markdown</span>
+                  <span className="flex items-center justify-center gap-2.5 rounded-xl border border-[#9f2b13] bg-[#d9401c]/90 px-4 py-3 text-xs font-bold transition hover:bg-[#f05a34] sm:text-sm"><FileText className="h-4 w-4 shrink-0" />Copy Markdown</span>
                 </button>
 
                 {/* Copy JSON */}
@@ -424,10 +424,9 @@ export default function Maintool() {
                   onClick={() =>
                     copyToClipboard(getExportJson(), "JSON Copied!")
                   }
-                  className="flex items-center justify-center gap-2.5 rounded-xl border-2 border-black bg-[#E85023] px-4 py-3 text-xs sm:text-sm font-bold text-black transition hover:brightness-105 active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-sm"
+                  className="rounded-2xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 text-black shadow-sm transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <Braces className="h-4 w-4 shrink-0" />
-                  <span>Copy JSON</span>
+                  <span className="flex items-center justify-center gap-2.5 rounded-xl border border-[#9f2b13] bg-[#d9401c]/90 px-4 py-3 text-xs font-bold transition hover:bg-[#f05a34] sm:text-sm"><Braces className="h-4 w-4 shrink-0" />Copy JSON</span>
                 </button>
 
                 {/* Download Markdown */}
@@ -443,10 +442,9 @@ export default function Maintool() {
                       "text/markdown"
                     )
                   }
-                  className="flex items-center justify-center gap-2.5 rounded-xl border-2 border-black bg-[#E85023] px-4 py-3 text-xs sm:text-sm font-bold text-black transition hover:brightness-105 active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-sm"
+                  className="rounded-2xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 text-black shadow-sm transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <Download className="h-4 w-4 shrink-0" />
-                  <span>Download Markdown</span>
+                  <span className="flex items-center justify-center gap-2.5 rounded-xl border border-[#9f2b13] bg-[#d9401c]/90 px-4 py-3 text-xs font-bold transition hover:bg-[#f05a34] sm:text-sm"><Download className="h-4 w-4 shrink-0" />Download Markdown</span>
                 </button>
 
                 {/* Download JSON */}
@@ -462,19 +460,20 @@ export default function Maintool() {
                       "application/json"
                     )
                   }
-                  className="flex items-center justify-center gap-2.5 rounded-xl border-2 border-black bg-[#E85023] px-4 py-3 text-xs sm:text-sm font-bold text-black transition hover:brightness-105 active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-sm"
+                  className="rounded-2xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 text-black shadow-sm transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <Download className="h-4 w-4 shrink-0" />
-                  <span>Download JSON</span>
+                  <span className="flex items-center justify-center gap-2.5 rounded-xl border border-[#9f2b13] bg-[#d9401c]/90 px-4 py-3 text-xs font-bold transition hover:bg-[#f05a34] sm:text-sm"><Download className="h-4 w-4 shrink-0" />Download JSON</span>
                 </button>
               </div>
             </div>
           </div>
 
         </div>
+        </div>
 
         {/* ================= RIGHT CHAT PREVIEW PANEL (Desktop) ================= */}
-        <div className="hidden lg:flex lg:col-span-5 rounded-3xl border-[3px] border-[#E85023] bg-[#EFECE8] p-4 sm:p-5 shadow-xl flex-col h-[700px]">
+        <div className="hidden h-[700px] rounded-3xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 shadow-xl lg:col-span-5 lg:block">
+          <div className="flex h-full flex-col rounded-[22px] border border-[#9f2b13] bg-[#EFECE8] p-4 sm:p-5">
           <div className="flex items-center justify-between border-b border-[#D4431B]/20 pb-3 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-[#D4431B]">
               Conversation Preview
@@ -488,12 +487,13 @@ export default function Maintool() {
             {renderChatBubbles()}
           </div>
         </div>
+        </div>
       </div>
 
       {/* ================= MOBILE CHAT PREVIEW POPUP ================= */}
       {isMobileChatOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3 sm:p-4 backdrop-blur-sm lg:hidden animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg h-[82vh] rounded-3xl border-[3px] border-[#E85023] bg-[#EFECE8] p-4 sm:p-5 flex flex-col shadow-2xl animate-in zoom-in-95 duration-200">
+          <div className="relative w-full max-w-lg h-[82vh] rounded-3xl border border-[#8f250f]/60 bg-[#EFECE8] p-4 shadow-2xl ring-1 ring-inset ring-[#ec4920] sm:p-5 flex flex-col animate-in zoom-in-95 duration-200">
             {/* Header with Close Button */}
             <div className="flex items-center justify-between border-b border-[#D4431B]/25 pb-3 mb-3">
               <div>
