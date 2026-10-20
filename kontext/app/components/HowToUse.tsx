@@ -19,19 +19,19 @@ const STEPS: Step[] = [
     number: "01", label: "Paste link", title: "Paste Public Share Link",
     subtitle: "Bring your existing AI conversation into Kontext.",
     image: "./1.png",
-    alt: "Code and a laptop screen representing a shared conversation link", background: "bg-[#faf7f2]",
+    alt: "Code and a laptop screen representing a shared conversation link", background: "bg-[#F8F3F0]",
   },
   {
     number: "02", label: "Export", title: "Export Your Context",
     subtitle: "Turn the conversation into clean reusable formats.",
     image: "./2.png",
-    alt: "Server connections representing exported context", background: "bg-[#f7f2ec]",
+    alt: "Server connections representing exported context", background: "bg-[#F8F3F0]",
   },
   {
     number: "03", label: "Continue", title: "Continue Anywhere",
     subtitle: "Take the context into your next AI session.",
     image: "./3.png",
-    alt: "Laptop representing continuing work in another AI session", background: "bg-[#f4f6f1]",
+    alt: "Laptop representing continuing work in another AI session", background: "bg-[#F8F3F0]",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function HowToUse() {
   };
 
   return (
-    <section id="how-it-works" className="relative overflow-hidden bg-[#c8bfba] px-4 pb-24 pt-28 text-black sm:px-6 sm:pt-32 lg:px-8">
+    <section id="how-it-works" className="relative overflow-hidden bg-[#F8F3F0] px-4 pb-24 pt-28 text-[#014BAA] sm:px-6 sm:pt-32 lg:px-8">
       <style>{`
         @keyframes enginePulse { 0%,100% { transform:scale(.95); box-shadow:0 0 0 0 rgba(236,73,32,.12) } 50% { transform:scale(1); box-shadow:0 0 0 10px rgba(236,73,32,.08),0 0 30px rgba(236,73,32,.24) } }
         @keyframes engineSpin { to { transform:rotate(360deg) } }
@@ -71,7 +71,7 @@ export default function HowToUse() {
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-dotted border-[#8f250f]/60 bg-[#faf7f2] px-3.5 py-1 font-mono text-xs font-medium text-[#1e463a]"><span className="h-2 w-2 rounded-full bg-[#1e463a]" /> HOW IT WORKS / THREE-STEP WORKFLOW</div>
-          <h2 className="text-3xl font-bold leading-[1.15] tracking-tight text-[#171717] sm:text-4xl lg:text-5xl">From raw conversation link to <span className="text-[#ec4920]">continuation-ready context</span>.</h2>
+          <h2 className="text-3xl font-bold leading-[1.15] tracking-tight text-[#014BAA] sm:text-4xl lg:text-5xl">From raw conversation link to <span className="text-[#014BAA]">continuation-ready context</span>.</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#3f3e3e] sm:text-lg">Extract authentic decisions, preserve constraints, and move your context between AI tools in three simple steps.</p>
         </div>
 

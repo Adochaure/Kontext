@@ -27,12 +27,12 @@ export default function Navbar({ logoSrc, onImportClick }: NavbarProps) {
 
   return (
     <nav className="fixed inset-x-0 top-2 z-50 flex justify-center px-2 sm:top-3 sm:px-4">
-      <div className="flex max-w-full items-center gap-1 rounded-2xl border border-[#8f250f]/60 bg-[#ec4920]/90 p-1 shadow-lg shadow-[#5a1b09]/20 backdrop-blur-md">
+      <div className="flex max-w-full items-center gap-1 rounded-2xl border border-[#014BAA]/60 bg-[#014BAA]/90 p-1 shadow-lg shadow-[#014BAA]/20 backdrop-blur-md">
 
         {/* Logo */}
         <Link
           href="/"
-          className="rounded-xl bg-[#b9b6b6] px-1 py-1 text-sm font-light text-black transition duration-200 hover:bg-[#4a4949] flex items-center justify-center"
+          className="logo-gradient-flow rounded-xl p-1 text-sm font-light text-black transition duration-200 flex items-center justify-center"
         >
           <img
             src={logoSrc}
@@ -42,14 +42,14 @@ export default function Navbar({ logoSrc, onImportClick }: NavbarProps) {
         </Link>
 
         {/* Navigation */}
-        <div className="flex items-center gap-1 rounded-2xl border border-[#8f250f]/50 bg-[#d9401c]/90 p-1">
+        <div className="flex items-center gap-1 rounded-2xl border-black/20 border-1  bg-[#014BAA]/90 p-1">
           {navItems.map((item, index) => (
             <a
               key={index}
               href={item.link}
               target={item.link.startsWith("http") ? "_blank" : undefined}
               rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-              className={`${item.hideOnMobile ? "hidden sm:flex" : "flex"} h-10 items-center justify-center whitespace-nowrap rounded-xl border border-[#9f2b13] px-3 text-sm text-black transition duration-200 hover:border-[#5a1b09] hover:bg-[#f05a34] sm:h-12 sm:px-4 sm:text-base md:h-14 md:px-5 md:text-lg`}
+              className={`${item.hideOnMobile ? "hidden sm:flex" : "flex"} h-10 items-center justify-center whitespace-nowrap rounded-xl border border-black/30 px-3 text-sm text-white transition duration-200 hover:border-white sm:h-12 sm:px-4 sm:text-base md:h-14 md:px-5 md:text-lg`}
             >
               {item.isGitHub ? (
                 <svg
@@ -72,18 +72,18 @@ export default function Navbar({ logoSrc, onImportClick }: NavbarProps) {
           <button
             type="button"
             onClick={onImportClick}
-            className="whitespace-nowrap rounded-xl bg-black px-2 py-1 text-sm font-light text-white transition duration-200 hover:bg-[#898989] sm:px-3 cursor-pointer"
+            className="import-bouncy import-fill whitespace-nowrap rounded-xl bg-black px-2 py-1 text-sm font-light text-white transition duration-200 hover:text-black sm:px-3 cursor-pointer"
           >
-            <span className="flex h-10 items-center justify-center rounded-xl border-none px-2 text-sm sm:h-12 sm:px-4 sm:text-xl md:h-14 md:px-5 md:text-xl">
+            <span className="relative z-10 flex h-10 items-center justify-center rounded-xl border-none px-2 text-sm sm:h-12 sm:px-4 sm:text-xl md:h-14 md:px-5 md:text-xl">
               Import Context
             </span>
           </button>
         ) : (
           <Link
             href="/import"
-            className="whitespace-nowrap rounded-xl bg-black px-2 py-1 text-sm font-light text-white transition duration-200 hover:bg-[#898989] sm:px-3 cursor-pointer"
+            className="import-bouncy import-fill whitespace-nowrap rounded-xl bg-black px-2 py-1 text-sm font-light text-white transition duration-200 hover:text-black sm:px-3 cursor-pointer"
           >
-            <span className="flex h-10 items-center justify-center rounded-xl border-none px-2 text-sm sm:h-12 sm:px-4 sm:text-xl md:h-14 md:px-5 md:text-xl">
+            <span className="relative z-10 flex h-10 items-center justify-center rounded-xl border-none px-2 text-sm sm:h-12 sm:px-4 sm:text-xl md:h-14 md:px-5 md:text-xl">
               Import Context
             </span>
           </Link>

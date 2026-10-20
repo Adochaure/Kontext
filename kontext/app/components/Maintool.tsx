@@ -213,7 +213,7 @@ export default function Maintool() {
           {/* Avatar */}
           <div
             className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0 shadow-sm ${
-              msg.role === "user" ? "bg-[#E85023]" : "bg-[#111111]"
+              msg.role === "user" ? "bg-[#014BAA]" : "bg-[#014BAA]/90"
             }`}
           >
             {msg.role === "user" ? "U" : "AI"}

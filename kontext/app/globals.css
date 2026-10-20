@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f3f0;
+  --foreground: #014baa;
 }
 
 @theme inline {
@@ -15,8 +15,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #014baa;
+    --foreground: #f8f3f0;
   }
 }
 
@@ -36,3 +36,26 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+@keyframes logoGradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.logo-gradient-flow {
+  background: linear-gradient(135deg, #014baa, #f8f3f0, #014baa);
+  background-size: 220% 220%;
+  animation: logoGradientFlow 6s ease-in-out infinite;
+}
+
+.import-bouncy {
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 300ms ease, color 300ms ease;
+}
+
+.import-bouncy:hover {
+  transform: none;
+}
+
+.import-fill { position: relative; isolation: isolate; overflow: hidden; }
+.import-fill::before { position: absolute; inset: 0; z-index: -1; content: ""; background: #ffffff; transform: scaleX(0); transform-origin: bottom left; transition: transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+.import-fill:hover::before { transform: scaleX(1); }

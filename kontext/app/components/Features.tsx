@@ -33,13 +33,13 @@ export default function Features() {
   }, []);
 
   return (
-    <section id="features" className="relative overflow-hidden  bg-[#c8bfba] px-4 pb-28 pt-20 text-[#171717]  sm:px-6 sm:pt-24 lg:px-8">
+    <section id="features" className="relative overflow-hidden  bg-[#F8F3F0] px-4 pb-28 pt-20 text-[#014BAA]  sm:px-6 sm:pt-24 lg:px-8">
       <div aria-hidden="true" className="pointer-events-none absolute -right-32 top-8 h-72 w-72 rounded-full bg-[#ec4920]/20 blur-3xl sm:h-[28rem] sm:w-[28rem]" />
       <div aria-hidden="true" className="pointer-events-none absolute -left-28 bottom-12 h-64 w-64 rounded-full bg-[#1e463a]/15 blur-3xl sm:h-80 sm:w-80" />
       <div className="relative mx-auto max-w-6xl">
         <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
           <p className="mb-4 font-mono text-xs tracking-[.2em] text-[#1e463a]">WHAT YOU KEEP</p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Context that stays <span className="text-[#ec4920]">useful.</span></h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Context that stays <span className="text-[#014BAA]">useful.</span></h2>
           <p className="mt-4 text-base leading-relaxed text-[#55504d] sm:text-lg">Every extracted conversation is shaped to help you continue, not just look back.</p>
         </div>
 

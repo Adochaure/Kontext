@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function ImportPage() {
   return (
-    <div className="relative min-h-[100svh] w-full bg-[#c8bfba] text-black selection:bg-[#ec4920] selection:text-white overflow-x-hidden">
+    <div className="relative min-h-[100svh] w-full bg-[#F8F3F0] text-[#014BAA] selection:bg-[#014BAA] selection:text-[#F8F3F0] overflow-x-hidden">
       {/* Top Navbar */}
       <Navbar logoSrc="/logo.png" />
 
